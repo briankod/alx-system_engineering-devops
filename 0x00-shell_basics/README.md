@@ -1,1 +1,1 @@
-Using Shebang to specify the OS to use bash shell
+Shell, basics
