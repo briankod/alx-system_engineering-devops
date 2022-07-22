@@ -2,7 +2,7 @@
 # This script manages manage_my_process.
 case $1 in
 	start)
-		sudo ./manage_my_process &
+		./manage_my_process &
 		echo "$!" > /var/run/my_process.pid
 		echo "manage_my_process started"
 		;;
@@ -14,7 +14,7 @@ case $1 in
 	restart)
 		sudo kill "$(cat /var/run/my_process.pid)"
 		sudo rm -f /var/run/my_process.pid
-		sudo ./manage_my_process &
+		./manage_my_process &
 		echo "$!" > /var/run/my_process.pid
 		echo "manage_my_process restarted"
 		;;
