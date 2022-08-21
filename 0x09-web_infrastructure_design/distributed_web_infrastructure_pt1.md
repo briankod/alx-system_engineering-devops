@@ -12,4 +12,4 @@
 - **How a database Primary-Replica (Master-Slave) cluster works.** <br />
     A Primary-Replica setup configures one server to act as the Primary server and the other server to act as a Replica of the Primary server. However, the Primary server is capable of performing read/write requests whilst the Replica server is only capable of performing read requests. Data is synchronized between the Primary and Replica servers whenever the Primary server executes a write operation.
 - **What is the difference between the Primary node and the Replica node in regard to the application.** <br />
-    Serves web pages to clients upon their request, it does this over the protocol HTTP.
+    The Primary node is responsible for all the write operations the site needs whilst the Replica node is capable of processing read operations, which decreases the read traffic to the Primary node.
