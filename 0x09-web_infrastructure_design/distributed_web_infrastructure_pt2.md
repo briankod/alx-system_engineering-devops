@@ -4,10 +4,10 @@
 
 ### Issues with this infrastructure
 
-- **SPOF (Single Point Of Failure).**
+- **SPOF (Single Point Of Failure).** <br />
     Failure of the server causes whole network to collapse
 
-- **Security issues.**
+- **Security issues.** <br />
     Prone to malware and interception by third parties to gather data passed between the two systems (no firewall, no HTTPS).
-- **No monitoring.**
+- **No monitoring.** <br />
     You cannot assess the health and performance of your servers in real-time.

@@ -4,5 +4,5 @@
 
 ### Specifics About This Infrastructure
 
-- **Scalability**
+- **Scalability** <br />
     To promote scalability, each of the major components (web server, application server, and database servers) have been moved to separate GNU/Linux servers.
