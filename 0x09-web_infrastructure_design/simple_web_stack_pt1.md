@@ -18,7 +18,7 @@
     Serves web pages to clients upon their request, it does this over the protocol HTTP.
 - **The role of the application server.** <br />
     Provides its clients with access to what is commonly called business logic, which generates dynamic content;that is, it’s code that transforms data to provide the specialized functionality offered by a business, service, or application.
-- **The role of the database.**
+- **The role of the database.** <br />
     To maintain a collection of organized information that can easily be accessed, updated and managed.
 - **What the server uses to communicate with the client (computer of the user requesting the website).** <br />
     Communication between the client and the server occurs over the internet network through the TCP/IP protocol suite.
