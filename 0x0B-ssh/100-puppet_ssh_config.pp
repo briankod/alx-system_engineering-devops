@@ -6,7 +6,7 @@ file_line { 'specify Identity File':
   line => 'IdentityFile ~/.ssh/school',
 }
 
-file_line { 'refuse password authenticate':
+file_line { 'refuse password authentication':
   path => '/etc/ssh/ssh_config',
   line => 'PasswordAuthentication no',
 }
