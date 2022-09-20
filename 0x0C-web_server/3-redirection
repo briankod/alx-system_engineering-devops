@@ -7,7 +7,6 @@ sudo apt update
 sudo apt install nginx
 sudo ufw allow 'Nginx HTTP'
 sudo ufw status
-sudo service nginx start
 echo "Hello World!" | sudo tee -a /var/www/html/index.nginx-debian.html
 sed -i "/server_name _;/ a\\\trewrite ^/redirect_me http://www.holbertonschool.com permanent;" /etc/nginx/sites-available/default
 sudo service nginx restart
