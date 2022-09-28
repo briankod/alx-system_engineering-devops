@@ -7,13 +7,5 @@ CONFIG_FILE="/etc/nginx/sites-available/default"
 sudo apt-get -y update
 sudo apt-get -y install nginx
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/tty1
-printf %s "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-}" > $CONFIG_FILE
+sed -i "/server_name _;/ a\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
 sudo service nginx restart
