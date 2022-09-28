@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# A script that configures a new Ubuntu machine
+# A script that configures a new Ubuntu machine.
 # Ensure redirection must be a “301 Moved Permanently”
 # Use what you did with 1-install_nginx_web_server
 

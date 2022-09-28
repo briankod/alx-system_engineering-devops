@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # A script that configures a new Ubuntu machine
 # Ensure Nginx is present and listening on port 80
-# Ensure when querying Nginx at its root / with a GET request (requesting a page) 
+# Ensure when querying Nginx at its root / with a GET request (requesting a page)
 # using curl, it returns a page that contains the string Hello World!
 
 sudo apt-get -y update
