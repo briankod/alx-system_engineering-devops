@@ -1,4 +1,4 @@
-# Automate the task of creating a custom HTTP header response  (Using Puppet)
+# Automate the task of creating a custom HTTP header response  (Using Puppet).
 
 exec { 'command':
   provider => shell,
