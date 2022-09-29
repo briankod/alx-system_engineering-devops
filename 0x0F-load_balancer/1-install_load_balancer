@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# A script that configures a new Ubuntu machine. Starting by
+# configuring HAproxy so that it send traffic to web-01 and web-02,
+# distributing requests using a roundrobin algorithm,
+# making sure that HAproxy can be managed via an init script and
+# making sure that your servers are configured with the right hostnames: [STUDENT_ID]-web-01 and [STUDENT_ID]-web-02.
+
+sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+
+CONFIG="\
+frontend http_web *:80
+    mode http
+    bind *:80
+    default_backend 22113-web
+    
+backend 22113-web
+    balance roundrobin
+    mode http
+    server 22113-web-01 3.234.245.59:80 check
+    server 22113-web-02 3.237.33.85:80 check
+"
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install haproxy
+echo "$CONFIG" >> /etc/haproxy/haproxy.cfg
+sudo service haproxy start
