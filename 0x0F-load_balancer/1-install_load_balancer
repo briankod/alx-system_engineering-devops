@@ -16,8 +16,8 @@ frontend http_web *:80
 backend 22113-web
     balance roundrobin
     mode http
-    server 22113-web-01 3.234.245.59:80 check
-    server 22113-web-02 3.237.33.85:80 check
+    server 22113-web-01 3.238.111.241:80 check
+    server 22113-web-02 3.238.120.131:80 check
 "
 sudo apt-get -y update
 sudo apt-get -y upgrade
