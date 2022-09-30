@@ -5,6 +5,10 @@
 # making sure that HAproxy can be managed via an init script and
 # making sure that your servers are configured with the right hostnames: [STUDENT_ID]-web-01 and [STUDENT_ID]-web-02.
 
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install haproxy
+
 sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 
 CONFIG="\
@@ -19,8 +23,6 @@ backend 22113-web
     server 22113-web-01 3.238.111.241:80 check
     server 22113-web-02 3.238.120.131:80 check
 "
-sudo apt-get -y update
-sudo apt-get -y upgrade
-sudo apt-get -y install haproxy
+
 echo "$CONFIG" >> /etc/haproxy/haproxy.cfg
 sudo service haproxy start
