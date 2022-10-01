@@ -2,17 +2,29 @@
 # A script that will display information about subdomains, after configuring your domain zone so
 # that the subdomain www points to your load-balancer IP (lb-01), and adding other subdomains.
 
-query ()
-{
-	dig "$2.$1" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", subdomain, $4, $5}' subdomain="$2"
+query() {
+	domain="$1"
+	subdomains=()
+	readarray -t subdomains < <(echo "$2" | tr ' ' '\n')
+	for ((i = 0; i < "${#subdomains[@]}"; i++))
+	do
+		subdomain="${subdomains[i]}"
+		output='{print "The subdomain", "'
+		output="$output$subdomain is a"
+		output="$output\", \$7, \"record and points to\", \$8}"
+		dig "$subdomain.$domain" \
+			| grep -A1 'ANSWER SECTION:' \
+			| tr '\n' ' ' \
+			| awk "$output"
+	done
 }
 
-if [ -z "$2" ]
+if [ "${#BASH_ARGV[@]}" -ge '2' ]
 then
-	for subdomain in "www" "lb-01" "web-01" "web-02"
-	do
-		query "$1" "$subdomain"
-    done
-else
 	query "$1" "$2"
+elif [ "${#BASH_ARGV[@]}" -ge '1' ]
+then
+	query "$1" "www lb-01 web-01 web-02"
+else
+	exit
 fi
