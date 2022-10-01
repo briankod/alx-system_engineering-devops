@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Make your fix short and sweet, using what you did for 0-nginx_likes_port_80
+
+sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+service nginx restar
+kill -QUIT $( cat /usr/local/nginx/logs/nginx.pid )
