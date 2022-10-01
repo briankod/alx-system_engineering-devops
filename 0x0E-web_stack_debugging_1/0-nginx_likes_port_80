@@ -4,3 +4,4 @@
 
 sudo sed -i 's/8080 default_server/80 default_server/g' /etc/nginx/sites-enabled/default
 sudo service nginx restart
+kill -QUIT "$( cat /usr/local/nginx/logs/nginx.pid )"
