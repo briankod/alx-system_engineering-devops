@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Make your fix short and sweet, using what you did for 0-nginx_likes_port_80
 sudo sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
-sudo service nginx restart
-sudo kill -QUIT "$( cat /run/nginx.pid )"
+sudo pkill -HUP nginx
