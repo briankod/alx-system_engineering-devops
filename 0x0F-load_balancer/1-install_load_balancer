@@ -9,21 +9,29 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 sudo apt-get -y install haproxy
-echo "22113-web-01, 22113-web-02" | sudo tee /var/www/html/index.nginx-debian.html
+echo "web-01","web-02" | sudo tee /var/www/html/index.nginx-debian.html
 
 sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 
 CONFIG="\
-frontend http_web *:80
-    mode http
-    bind *:80
-    default_backend 22113-web
-    
-backend 22113-web
+frontend http-https-in
+bind    *:80
+bind    *:443
+
+use_backend http_nginx_pool    if !{ ssl_fc }
+use_backend https_nginx_pool   if { ssl_fc }
+
+backend http_nginx_pool
     balance roundrobin
     mode http
-    server 22113-web-01 3.238.111.241:80 check
-    server 22113-web-02 3.238.120.131:80 check
+    server nginx 3.238.111.241:80 check
+    server nginx 3.238.120.131:80 check
+
+backend https_nginx_pool
+    balance roundrobin
+    mode http
+    server nginx 3.238.111.241:443 check
+    server nginx 3.238.120.131:443 check
 "
 
 echo "$CONFIG" | sudo tee -a /etc/haproxy/haproxy.cfg
