@@ -35,7 +35,7 @@ defaults
 
 #--brian-kod.tech-params-begin--
 backend brian-kod.tech-backend
-        http-request redirect scheme https unless { ssl_fc }
+        http-request redirect scheme https code 301 unless { ssl_fc }
         balance roundrobin
         server 22113-web-01 3.238.111.241:80 check
         server 22113-web-02 3.238.120.131:80 check
